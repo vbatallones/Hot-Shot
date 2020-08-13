@@ -30,3 +30,5 @@ passport.use(new localStragegy({
     })
     .catch(cb());
 }));
+
+module.exports = passport;
