@@ -23,23 +23,45 @@ router.post('/signup', (req, res) => {
     if (created) {
       //if created, success and redirect to home
       console.log(`${user.name} was created`)
-      res.redirect('/')
+      passport.authenticate('local', {
+        successRedirect: '/',
+        // flash message for account
+        successFlash: 'Account created and logging in'
+      })(req, res);
+      
+      //res.redirect('/')
     } else {
       // email already exist
       console.log('Email already exist');
+      // flash for email
+      req.flash('Email already exist. Please try again.')
       res.redirect('/auth/signup')
     }
   })
   .catch(error => {
     console.log('Error', error);
+    // flash for error
+    req.flash(`ERROR, unfortunately... ${error}`);
     res.redirect('/auth/signup');
   })
 });
 
-
+// POST route for login with passort aunthenticate
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
-  failureRedirect: '/auth/login'
+  failureRedirect: '/auth/login',
+  // Success flash message to welcome back
+  successFlash: 'Welcome back.',
+  // failure flash for wrong email or password
+  failureFlash: 'Either email or password is incorrect. Please try again.'
 }))
+
+// POST route for log out and will will redirect to the home page.
+router.get('/logout', (req, res) => {
+  req.logOut();
+  //flash for logging out
+  req.flash('See you soon. Logging out.')
+  res.redirect('/');
+});
 
 module.exports = router;
