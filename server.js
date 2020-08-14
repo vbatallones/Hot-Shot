@@ -7,8 +7,8 @@ const SECRET_SESSION = process.env.SECRET_SESSION;
 const passport = require('./config/ppConfig');
 const flash = require('connect-flash')
 
+// MIDDLEWARE
 app.set('view engine', 'ejs');
-
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
@@ -25,11 +25,21 @@ app.use(session({
 // initialize passport and run session as middleware
 app.use(passport.initialize());
 app.use(passport.session());
-//flash for temporary messages to the user
+//flash for temporary messages to the user. put your flash below your passports
 app.use(flash());
 
+// middleware to have our message accesible for every view
+app.use((req, res, next ) => {
+  // before every route, we will attached our content user to res.local
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
+  // method 
+  next();
+});
+
+
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { alert: req.flash() });
 });
 
 app.get('/profile', (req, res) => {
