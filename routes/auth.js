@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models')
 const passport = require('../config/ppConfig')
+
 router.get('/signup', (req, res) => {
   res.render('auth/signup');
 });
@@ -34,14 +35,14 @@ router.post('/signup', (req, res) => {
       // email already exist
       console.log('Email already exist');
       // flash for email
-      req.flash('Email already exist. Please try again.')
+      req.flash('error', 'Email already exist. Please try again.')
       res.redirect('/auth/signup')
     }
   })
   .catch(error => {
     console.log('Error', error);
     // flash for error
-    req.flash(`ERROR, unfortunately... ${error}`);
+    req.flash('error', `ERROR, unfortunately... ${error}`);
     res.redirect('/auth/signup');
   })
 });
@@ -60,7 +61,7 @@ router.post('/login', passport.authenticate('local', {
 router.get('/logout', (req, res) => {
   req.logOut();
   //flash for logging out
-  req.flash('See you soon. Logging out.')
+  req.flash('success', 'See you soon. Logging out.')
   res.redirect('/');
 });
 
