@@ -9,7 +9,7 @@ const flash = require('connect-flash');
 //require the authorization middleware at the top of the page
 const isLoggedIn = require('./middleware/isLoggedIn');
 const { response } = require('express');
-
+const db = require('./models')
 // axios
 const axios = require('axios')
 const API_KEY = process.env.API_KEY
@@ -52,6 +52,23 @@ app.get('/', (req, res) => {
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');
 });
+
+// app.post('/profile', (req, res) => {
+//   console.log(req.body)
+//   db.player.findOrCreate({
+//     where: { 
+//       id: req.body.playerID, 
+//       name: req.body.name
+//     }
+//   })
+//   .then(([faves, created]) => {
+//     console.log(`this was created line 64: ${created}`)
+//     res.redirect('/nba/players')
+//   })
+//   .catch(err => {
+//     console.log('Error', err)
+//   })
+// })
 
 //middleware for my auth
 app.use('/auth', require('./routes/auth'));

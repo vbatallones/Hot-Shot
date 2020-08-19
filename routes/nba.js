@@ -27,7 +27,7 @@ router.get('/', async (req, res) => {
   })
 }) 
 
-router.get('/:name', async (req, res) => {
+router.get('/search', async (req, res) => {
   console.log(req.query)
   // getting what the user will input, either first name of last name
   let firstName;
@@ -67,8 +67,42 @@ router.get('/:name', async (req, res) => {
     console.log(err)
   })
 })
-router.post('/fave', (req, res) => {
 
+router.post('/', (req, res) => {
+  console.log(req.body)
+  db.player.findOrCreate({
+    where: { 
+      name: req.body.name,
+      image: req.body.photoUrl
+    }
+  })
+  .then(([faves, created]) => {
+    res.redirect('/nba')
+  })
+  .catch(err => {
+    console.log('Error', err)
+  })
 })
 
+// router.post('/profile', (req, res) => {
+//   console.log(req.body)
+//   db.player.findOrCreate({
+//     where: { 
+//       name: req.body.name,
+//       image: req.body.photoUrl
+//     }
+//   })
+//   .then(([player, created]) => {
+//     db.users_players.findOrCreate({
+//       where: {
+//         userId: req.params.id,
+//         playerId: req.params.id
+//       }
+//     })
+//     res.render('profile')
+//   })
+//   .catch(err => {
+//     console.log('Error', err)
+//   })
+// })
   module.exports = router;
