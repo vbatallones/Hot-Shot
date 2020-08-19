@@ -1,8 +1,8 @@
 body {
-  background: brown;
+  background: #fefefe;
 }
 img {
-  background: white;
+  background: gray;
   border-radius: 180px;
 }
 nav ul li {

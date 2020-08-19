@@ -10,12 +10,12 @@
 
 <% //all players %> 
 
- <% player.forEach(p => { %>
+<% player.forEach(p => { %>
     <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}  `%> </h5>
-      <p>Team: <%= p.Team %> </p>
-      <p>Status: <%= p.Status %> </p>
-      <p>Salary: $<%= p.Salary %> </p>
-      <p>Experience: <%= p.Experience %> </p>
+    <p>Team: <%= p.Team %> </p>
+    <p>Status: <%= p.Status %> </p>
+    <p>Salary: $<%= p.Salary %> </p>
+    <p>Experience: <%= p.Experience %> </p>
     <img src="<%= p.PhotoUrl  %> " alt="photo">
 
 <form method="POST" action="/profile">
