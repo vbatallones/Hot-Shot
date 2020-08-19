@@ -1,16 +1,16 @@
 {
   "development": {
-    "database": "authentication_app_development",
+    "database": "NBA_app_development",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "database": "authentication_app_test",
+    "database": "NBA_app_test",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "database": "authentication_app_production",
+    "database": "NBA_app_production",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }

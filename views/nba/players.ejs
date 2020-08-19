@@ -1,0 +1,62 @@
+
+<% //search individual players %> 
+
+<form method="GET" action="/nba/search">
+    <label for="name">Player name:</label>
+    <input type="text" name="name" id="name" value="">
+    <!-- <input type="text" name="last" id="last" value="" required> -->
+    <button type="submit">Search</button>
+</form>
+
+<% //all players %> 
+
+ <% player.forEach(p => { %>
+    <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}  `%> </h5>
+      <p>Team: <%= p.Team %> </p>
+      <p>Status: <%= p.Status %> </p>
+      <p>Salary: $<%= p.Salary %> </p>
+      <p>Experience: <%= p.Experience %> </p>
+    <img src="<%= p.PhotoUrl  %> " alt="photo">
+
+<form method="POST" action="/profile">
+<input hidden type="text" name="name" id="name">
+<input hidden type="text" name="playerID" id="playerID" value=" <%= p.PlayerID %>">
+<button type="submit">Add to Collection</button>
+</form>
+<% }) %>
+
+
+
+
+<!-- <div id="playerList">
+
+</div>
+
+<%// if (player) { %>
+    <script>
+       var lineUp = <%- //JSON.stringify(player) %>  
+       console.log(lineUp)    
+       populatePlayers(lineUp)  
+       function createCard (p) {
+           var html = ` <p>${p.FirstName + " " + p.LastName} </p>
+        <p>${p.Team} </p>
+        
+<form method="POST"action="/profile" id="collectPlayers">
+    <input hidden type="text" name="name" id="name" value="${p.FirstName} ${p.LastName}">
+    <input hidden type="text" name="playerID" id="playerID" value="${p.PlayerID}">
+    <button type="submit">Add to Collection</button>
+    </form>`
+    return html;
+}  
+function populatePlayers(arr) {
+    playerList.innerHTML = ""
+    arr.forEach(p => {
+        playerList.innerHTML += createCard(p)
+    })
+}
+    </script>
+
+
+ <script src="/js/players.js"></script> -->
+
+

@@ -1,0 +1,23 @@
+<div>
+  <a href="/nba/players">NBA Players</a>
+</div>
+
+<div class="solo-play">
+  <% players.forEach(p => { %>
+      <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}  `%> </h5>
+      <p>Team: <%= p.Team %> </p>
+      <p>Position: <%= p.Position  %> </p>
+      <p>Status: <%= p.Status %> </p>
+      <p>Salary: $<%= p.Salary %> </p>
+      <p>Experience: <%= p.Experience %> </p>
+    <img src="<%= p.PhotoUrl  %> " alt="photo">
+
+    <form method="POST" action="/profile">
+      <input hidden type="text" name="name" id="name">
+      <input hidden type="text" name="playerID" id="playerID" value=" <%= p.PlayerID %>">
+      <button type="submit">Add to Collection</button>
+      </form>
+   <% }) %> 
+</div>
+  
+
