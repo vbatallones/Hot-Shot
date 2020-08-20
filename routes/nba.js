@@ -2,14 +2,14 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router()
 const db = require('../models')
+
 // Axios 
 const axios = require('axios')
 
 // API key
 const API_KEY = process.env.API_KEY;
 
-// first endpoint route for all players 
-// should a aysnc method so we dont get a delay request when the user clicks the NBA players (ask for more details)
+// ---------------------- GET route. show all players ---------------------
 router.get('/', async (req, res) => {
   let options = {
     headers: {
@@ -26,6 +26,7 @@ router.get('/', async (req, res) => {
     console.log('error', err)
   })
 }) 
+// ---------- GET route. Link name get by id,comment on the player and preview the player ---------------
 router.get('/:id', async (req, res) => {
   let options = {
     headers: {
@@ -34,15 +35,12 @@ router.get('/:id', async (req, res) => {
   }
   await axios.get(`https://api.sportsdata.io/v3/nba/scores/json/Player/${req.params.id}`, options)
   .then((response) => {
-    //console.log(response)
     let player = response.data
     db.comment.findAll({
       where: {playerId: req.params.id}
     })
     .then((comments) => {
-      console.log('comments--------------')
-      console.log(comments)
-       res.render('nba/preview', { p: player, comments: comments })
+      res.render('nba/preview', { p: player, comments: comments })
     })
     .catch((error) => {
       console.log(error)
@@ -55,6 +53,7 @@ router.get('/:id', async (req, res) => {
   })
 }) 
 
+//----------------- GET route. SEARCH for individual player ------------------
 router.get('/search', async (req, res) => {
   console.log(req.query)
   // getting what the user will input, either first name of last name
@@ -77,14 +76,11 @@ router.get('/search', async (req, res) => {
   await axios.get(`https://api.sportsdata.io/v3/nba/scores/json/Players`, options)
   .then((response) => {
   let allPlayers = response.data;
-  
-   //console.log(allPlayers)
     let players = [];
   //for loop search for each name of the players
       for (let i = 0; i < allPlayers.length; i++) {
         let eachPlayer = allPlayers[i];
         let firstNameResult = eachPlayer.FirstName.toLowerCase();
-        let lastNameResult = eachPlayer.LastName.toLowerCase();
         if (firstNameResult === firstName.toLowerCase()) {
               players.push(eachPlayer)
         }
@@ -95,7 +91,7 @@ router.get('/search', async (req, res) => {
     console.log(err)
   })
 })
-// POST route for add my players to database
+// --------------------- POST route for add my players to database ----------------------------
 
 router.post('/', (req, res) => {
   console.log(req.body)
@@ -112,36 +108,8 @@ router.post('/', (req, res) => {
     console.log('Error', err)
   })
 })
-// redundant route!!!!
 
-// router.get('/:id', (req, res) => {
-//   db.player.findOne({
-//     where: { id: req.params.id },
-//     include: [db.user]
-//   })
-//   .then((player) => {
-//     if (!player) throw Error()
-//     console.log(player)
-//     db.comment.findAll({
-//       where: {playerId: req.params.id}
-//     })
-//     .then((comments) => {
-//       console.log('comments--------------')
-//       console.log(comments)
-//        res.render('nba/preview', { player: player, comments: comments })
-//     })
-//     .catch((error) => {
-//       console.log(error)
-//       res.status(400)
-//     })
-//   })
-//   .catch((error) => {
-//     console.log(error)
-//     res.status(400)
-//   })
-// })
-
-// POST comments on each players
+// ------------------------------- POST comments on each players ------------------------------
 router.post('/comment', (req, res) => {
   console.log('req.body')
   console.log(req.body)

@@ -48,9 +48,6 @@ app.get('/', (req, res) => {
   res.render('index', { alerts: res.locals.alerts });
 });
 
-// app.get('/profile', isLoggedIn, (req, res) => {
-//   res.render('profile');
-// });
 //middleware for my auth
 app.use('/auth', require('./routes/auth'));
 // middleware for my nba 

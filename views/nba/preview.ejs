@@ -1,25 +1,51 @@
 
-
-    <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}  `%> </h5>
-    <p>Team: <%= p.Team %> </p>
-    <p>Position: <%= p.Position  %> </p>
-    <p>Status: <%= p.Status %> </p>
-    <p>Salary: $<%= p.Salary %> </p>
-    <p>Experience: <%= p.Experience %> </p>
-  <img src="<%= p.PhotoUrl  %> " alt="photo">
-  <div class="edit">
-      <a href="/nba/edit">Edit</a>
-  </div>
-<form method="POST" action="/nba/comment">
-    <input type="hidden" name="playerId" value="<%= p.PlayerID %>">
-    <label for="name">Name</label>
-    <input class="form-control" type="text" name="name" id="name">
-    <label for="content">Content</label>
-    <textarea class="form-control" type="text" name="content" id="content"></textarea> 
-    <button class="btn btn-primary" type="submit">Submit</button>
-  </form>
-
-  <% comments.forEach(c => { %>
-    <%= c.content %> 
-
-<% }) %>
+    <div class="preview">
+        <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%> </h5>
+        <p>Team: <%= p.Team %> </p>
+        <p>Position: <%= p.Position  %> </p>
+        <p>Status: <%= p.Status %> </p>
+        <p>Salary: $<%= p.Salary %> </p>
+        <p>Experience: <%= p.Experience %> </p>
+        <img src="<%= p.PhotoUrl  %> " alt="photo">
+    </div>
+        
+    <div class="comment-form">
+        <form method="POST" action="/nba/comment">
+            <input type="hidden" name="playerId" value="<%= p.PlayerID %>">
+            <!-- <label for="name">Name</label>
+            <input class="form-control" type="text" name="name" id="name"> -->
+            <label for="content">Content</label>
+            <textarea class="form-control" type="text" name="content" id="content"></textarea> 
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+ 
+        <% comments.forEach(c => { %>
+            <h5><%= c.name %> </h5>
+            <p ><%= c.content %></p> 
+            <!-- Button trigger modal -->
+<form method="POST" action="/nba<%=dinoId%>/?_method=PUT">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Comment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <textarea class="form-control" type="text" name="content" id="content"></textarea> 
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+        </div>
+    </div>
+    </div>
+</form>
+        <% }) %>

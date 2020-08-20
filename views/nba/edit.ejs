@@ -1,0 +1,6 @@
+<form method="POST" action="/nba/comment/<%= p.PlayerID%>/?_method=PUT">
+    <input type="hidden" name="playerId" value="<%= p.PlayerID %>">
+    <label for="content">Content</label>
+    <textarea class="form-control" type="text" name="content" id="content"></textarea> 
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
