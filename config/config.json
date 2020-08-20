@@ -12,6 +12,7 @@
   "production": {
     "database": "NBA_app_production",
     "host": "127.0.0.1",
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "use_env_variable": "postgres://bvpmsgqnuisjjv:cef28edcee06eb2e017654f597376fe96e9afc2c8ea1f54cdbc3253efdd5af09@ec2-52-22-94-132.compute-1.amazonaws.com:5432/dcbqtn8pcheig5"
   }
 }
