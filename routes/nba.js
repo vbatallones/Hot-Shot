@@ -20,7 +20,35 @@ router.get('/', async (req, res) => {
   .then((response) => {
     //console.log(response)
     let allPlayers = response.data
-    res.render('nba/players', {player: allPlayers})
+    res.render('nba/players', {players: allPlayers})
+  }) 
+  .catch(err => {
+    console.log('error', err)
+  })
+}) 
+router.get('/:id', async (req, res) => {
+  let options = {
+    headers: {
+      'Ocp-Apim-Subscription-Key': API_KEY
+    }
+  }
+  await axios.get(`https://api.sportsdata.io/v3/nba/scores/json/Player/${req.params.id}`, options)
+  .then((response) => {
+    //console.log(response)
+    let player = response.data
+    db.comment.findAll({
+      where: {playerId: req.params.id}
+    })
+    .then((comments) => {
+      console.log('comments--------------')
+      console.log(comments)
+       res.render('nba/preview', { p: player, comments: comments })
+    })
+    .catch((error) => {
+      console.log(error)
+      res.status(400)
+    })
+    //res.render('nba/preview', {p: player})
   }) 
   .catch(err => {
     console.log('error', err)
@@ -67,6 +95,7 @@ router.get('/search', async (req, res) => {
     console.log(err)
   })
 })
+// POST route for add my players to database
 
 router.post('/', (req, res) => {
   console.log(req.body)
@@ -83,26 +112,49 @@ router.post('/', (req, res) => {
     console.log('Error', err)
   })
 })
+// redundant route!!!!
 
-// router.post('/profile', (req, res) => {
-//   console.log(req.body)
-//   db.player.findOrCreate({
-//     where: { 
-//       name: req.body.name,
-//       image: req.body.photoUrl
-//     }
+// router.get('/:id', (req, res) => {
+//   db.player.findOne({
+//     where: { id: req.params.id },
+//     include: [db.user]
 //   })
-//   .then(([player, created]) => {
-//     db.users_players.findOrCreate({
-//       where: {
-//         userId: req.params.id,
-//         playerId: req.params.id
-//       }
+//   .then((player) => {
+//     if (!player) throw Error()
+//     console.log(player)
+//     db.comment.findAll({
+//       where: {playerId: req.params.id}
 //     })
-//     res.render('profile')
+//     .then((comments) => {
+//       console.log('comments--------------')
+//       console.log(comments)
+//        res.render('nba/preview', { player: player, comments: comments })
+//     })
+//     .catch((error) => {
+//       console.log(error)
+//       res.status(400)
+//     })
 //   })
-//   .catch(err => {
-//     console.log('Error', err)
+//   .catch((error) => {
+//     console.log(error)
+//     res.status(400)
 //   })
 // })
+
+// POST comments on each players
+router.post('/comment', (req, res) => {
+  console.log('req.body')
+  console.log(req.body)
+  db.comment.create(
+    req.body
+  )
+  .then((comment) => {
+    if (!comment) throw Error()
+    res.redirect('/nba/' + req.body.playerId)
+  })
+  .catch((error) => {
+    console.log(error)
+    res.status(400)
+  })
+})
   module.exports = router;

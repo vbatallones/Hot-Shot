@@ -1,6 +1,12 @@
 
 <h3>Favorite Players</h3>   
 
-<% player.forEach(p => { %>
-    <p><%= p.dataValues.name  %> </p>
-<% }) %> 
+
+
+<% players.forEach(p => { %>
+    <h3><%= p.name %> </h3>
+    <img src="<%= p.image  %> " alt="photo">
+    <form method="POST" action="/profile/delete/<%= p.id %> ">
+        <button type="submit">DELETE</button>
+    </form>
+<% }) %>

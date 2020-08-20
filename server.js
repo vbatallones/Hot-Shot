@@ -20,7 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
 
-
 // secret: what we actually giving back to the user to use our site. actual user
 // resave: save the session even if it's modified, make this false
 // saveUninitialized: if a new session and has not been save. we'll save it, therefore setting this to true.
@@ -49,31 +48,15 @@ app.get('/', (req, res) => {
   res.render('index', { alerts: res.locals.alerts });
 });
 
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
-});
-
-// app.post('/profile', (req, res) => {
-//   console.log(req.body)
-//   db.player.findOrCreate({
-//     where: { 
-//       id: req.body.playerID, 
-//       name: req.body.name
-//     }
-//   })
-//   .then(([faves, created]) => {
-//     console.log(`this was created line 64: ${created}`)
-//     res.redirect('/nba/players')
-//   })
-//   .catch(err => {
-//     console.log('Error', err)
-//   })
-// })
-
+// app.get('/profile', isLoggedIn, (req, res) => {
+//   res.render('profile');
+// });
 //middleware for my auth
 app.use('/auth', require('./routes/auth'));
 // middleware for my nba 
 app.use('/nba', require('./routes/nba'));
+app.use('/profile', require('./routes/profile'));
+
 
 
 const port = process.env.PORT || 3000;

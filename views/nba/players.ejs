@@ -10,12 +10,8 @@
 
 <% //all players %> 
 
-<% player.forEach(p => { %>
-    <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}  `%> </h5>
-    <p>Team: <%= p.Team %> </p>
-    <p>Status: <%= p.Status %> </p>
-    <p>Salary: $<%= p.Salary %> </p>
-    <p>Experience: <%= p.Experience %> </p>
+<% players.forEach(p => { %>
+    <h3><a href="/nba/<%= p.PlayerID %>"><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%></a></h3>
     <img src="<%= p.PhotoUrl  %> " alt="photo">
 
 <form method="POST" action="/nba">
@@ -23,15 +19,12 @@
 <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
 <button type="submit">Add to Collection</button>
 </form>
+
 <% }) %>
-<!-- <form method="POST" action="/articles/comment">
-    <input type="hidden" name="articleId" value="<%=// user.id %>">
-    <label for="name">Name</label>
-    <input class="form-control" type="text" name="name" id="name">
-    <label for="content">Content</label>
-    <textarea class="form-control" type="text" name="content" id="content"></textarea> 
-    <button class="btn btn-primary" type="submit">Submit</button>
-  </form> -->
+
+
+
+
 
 
 

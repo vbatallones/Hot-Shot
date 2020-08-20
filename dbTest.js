@@ -41,3 +41,10 @@ const API_KEY = process.env.API_KEY
 //})
 
 // db.player.findOrCreate({       where: { id: 1,name: "Lebron James"},
+
+db.player.findAll().then(player=>{
+  player.forEach(p => {
+    console.log(p.name)
+  })
+  // users will be an array of all User instances
+});
