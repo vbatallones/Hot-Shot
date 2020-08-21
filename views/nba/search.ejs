@@ -12,12 +12,12 @@
       <p>Experience: <%= p.Experience %> </p>
     <img src="<%= p.PhotoUrl  %> " alt="photo">
 
-<form method="POST" action="/nba">
-  <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
-  <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
-  <button type="submit">Add to Collection</button>
-  </form>
-   <% }) %> 
-</div>
-  
+    <form method="POST" action="/nba">
+      <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
+      <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
+      <button type="submit">Add to Collection</button>
+      </form>
+  <% }) %> 
+    </div>
+      
 

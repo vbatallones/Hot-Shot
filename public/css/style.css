@@ -1,17 +1,27 @@
+*{
+  outline: 1px dotted red;
+  font-weight:bolder;
+}
+
 body {
   background: #fefefe;
 }
+.carousel-item {
+  height: 32rem;
+}
+.logo {
+  /* background: url(http://disputebills.com/site/uploads/2015/10/dispute.png) center / contain no-repeat; */
+  margin: 0 auto;
+  /* width: 200px; no height needed ... image will resize automagically */
+}
+.nav li {
+  padding-right: 6px;
+  display: inline-block;
+}
+
 img {
   background: gray;
   border-radius: 180px;
-}
-nav ul li {
-  text-decoration: none;
-  display: inline-block;
-  margin-right: .3em;
-}
-nav {
-  background: #1D428A;
 }
 
 .login {

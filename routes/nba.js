@@ -26,6 +26,48 @@ router.get('/', async (req, res) => {
     console.log('error', err)
   })
 }) 
+
+
+//----------------- GET route. SEARCH for individual player ------------------
+router.get('/search', (req, res) => {
+  console.log(req.query)
+  // getting what the user will input, either first name of last name
+  let firstName;
+  let lastName;
+  // if the query return a name that includes a space, we now split the characters in to two parts
+  // which is the fisrt name is the first index and the last name is the second index
+  if (req.query.name.includes(' ')) {
+    firstName = req.query.name.split(' ')[0];
+    lastName = req.query.name.split(' ')[1];
+  } else {
+    firstName = req.query.name;
+    lastName = "";
+  }
+  let options = {
+    headers: {
+      'Ocp-Apim-Subscription-Key': API_KEY
+    }
+  }
+    axios.get(`https://api.sportsdata.io/v3/nba/scores/json/Players`, options)
+  .then((response) => {
+  let allPlayers = response.data;
+    let players = [];
+  //for loop search for each name of the players
+      for (let i = 0; i < allPlayers.length; i++) {
+        let eachPlayer = allPlayers[i];
+        let firstNameResult = eachPlayer.FirstName.toLowerCase();
+        let lastNameResult = eachPlayer.LastName.toLowerCase();
+        if (firstNameResult === firstName.toLowerCase()) {
+              players.push(eachPlayer)
+        }
+      }
+        res.render('nba/search', {players})
+  }) 
+  .catch(err => {
+    console.log(err)
+  })
+})
+
 // ---------- GET route. Link name get by id,comment on the player and preview the player ---------------
 router.get('/:id', async (req, res) => {
   let options = {
@@ -53,44 +95,6 @@ router.get('/:id', async (req, res) => {
   })
 }) 
 
-//----------------- GET route. SEARCH for individual player ------------------
-router.get('/search', async (req, res) => {
-  console.log(req.query)
-  // getting what the user will input, either first name of last name
-  let firstName;
-  let lastName;
-  // if the query return a name that includes a space, we now split the characters in to two parts
-  // which is the fisrt name is the first index and the last name is the second index
-  if (req.query.name.includes(' ')) {
-    firstName = req.query.name.split(' ')[0];
-    lastName = req.query.name.split(' ')[1];
-  } else {
-    firstName = req.query.name;
-    lastName = "";
-  }
-  let options = {
-    headers: {
-      'Ocp-Apim-Subscription-Key': API_KEY
-    }
-  }
-  await axios.get(`https://api.sportsdata.io/v3/nba/scores/json/Players`, options)
-  .then((response) => {
-  let allPlayers = response.data;
-    let players = [];
-  //for loop search for each name of the players
-      for (let i = 0; i < allPlayers.length; i++) {
-        let eachPlayer = allPlayers[i];
-        let firstNameResult = eachPlayer.FirstName.toLowerCase();
-        if (firstNameResult === firstName.toLowerCase()) {
-              players.push(eachPlayer)
-        }
-      }
-        res.render('nba/search', {players})
-  }) 
-  .catch(err => {
-    console.log(err)
-  })
-})
 // --------------------- POST route for add my players to database ----------------------------
 
 router.post('/', (req, res) => {
@@ -110,6 +114,7 @@ router.post('/', (req, res) => {
 })
 
 // ------------------------------- POST comments on each players ------------------------------
+
 router.post('/comment', (req, res) => {
   console.log('req.body')
   console.log(req.body)
@@ -124,5 +129,36 @@ router.post('/comment', (req, res) => {
     console.log(error)
     res.status(400)
   })
+})
+
+// ------------------- PUT route. UPDATE comment ---------------------
+
+router.put('/:id', (req, res) => {
+  db.comment.update({
+    content: req.body.content,
+  }, {
+    where: {
+      id: req.params.id
+    }
+}).then(response=>{
+    res.redirect(`/nba/${req.body.playerId}`)
+})
+.catch(err => {
+  console.log("error", err)
+})
+})
+
+
+// //------------------ DELETE comment on players-----------------
+
+router.delete('/:id', (req, res) => {
+  db.comment.destroy({
+      where: {
+          id: req.params.id
+      }
+  })
+    .then((comment) => {
+      res.render(`nba/deleted`, {message: "Your comment is deleted"} )
+    })
 })
   module.exports = router;

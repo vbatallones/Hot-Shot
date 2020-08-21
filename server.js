@@ -6,16 +6,22 @@ const session = require('express-session');
 const SECRET_SESSION = process.env.SECRET_SESSION;
 const passport = require('./config/ppConfig');
 const flash = require('connect-flash');
+const methodOverride = require('method-override');
+
 //require the authorization middleware at the top of the page
 const isLoggedIn = require('./middleware/isLoggedIn');
 const { response } = require('express');
 const db = require('./models')
+
 // axios
 const axios = require('axios')
+// API key
 const API_KEY = process.env.API_KEY
+
 // MIDDLEWARE
 app.set('view engine', 'ejs');
 app.use(require('morgan')('dev'));
+app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
@@ -52,6 +58,7 @@ app.get('/', (req, res) => {
 app.use('/auth', require('./routes/auth'));
 // middleware for my nba 
 app.use('/nba', require('./routes/nba'));
+//middleware for my profile
 app.use('/profile', require('./routes/profile'));
 
 
