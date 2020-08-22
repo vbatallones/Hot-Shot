@@ -1,11 +1,48 @@
 <% if (!currentUser)  { %>
-    <div class="jumbotron">
-        <h1 class="display-4">!</h1>
-        <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-        <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-      </div>
+    <div class="container" id="container">
+        <div class="form-container log-in-container">
+            <!-- Log in form code goes here -->
+            <form action="/auth/login" class="form-sign-log" method="POST">
+                <h4>Log in</h4>
+                <label for="auth-email"></label>
+                <input class="input-form" id="auth-email" type="email" name="email" placeholder="Email">
+                <input class="input-form" id="auth-password" type="password" name="password" placeholder="Password">
+                <label for="auth-password"></label>
+                <input class="input-form" type="submit" value="Log In">
+            </form>
+        </div>
+        <div class="form-container sign-up-container">
+            <!-- Sign Up form code goes here -->
+            <form action="/auth/signup" class="form-sign-log" method="POST">
+                <h4>Sign up</h4>
+                <input class="input-form" id="new-email" type="email" name="email" placeholder="Email">
+                <label for="new-email"></label>
+            
+                <input class="input-form" id="new-name" type="text" name="name" placeholder="Name">
+                <label for="new-name"></label>
+            
+                <input class="input-form" id="new-password" type="password" name="password" placeholder="Password">
+                <label for="new-password"></label>
+            
+                <input class="input-form" type="submit" value="Sign up">
+            </form>
+        </div>
+        <div class="overlay-container">
+            <!-- The overlay code goes here -->
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Hello, Player!</h1>
+                    <p>Enter your personal details and let's start ballin</p>
+                    <button class="ghost" id="logIn">Log In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <% } else { %>
 
             <h2></h2>
@@ -38,3 +75,5 @@
     </div>
 
 <% } %> 
+
+<script src="/js/index.js"></script>

@@ -16,7 +16,7 @@
             <input class="form-control" type="text" name="name" id="name">
             <label for="content">Content</label>
             <textarea class="form-control" type="text" name="content" id="content"></textarea> 
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="btn btn-primary comment-button" type="submit">Submit</button>
         </form>
     </div>
  
@@ -52,6 +52,6 @@
         </div>
         </div>
     <form method="POST" action="/nba/<%= c.id %>?_method=DELETE">
-        <button type="submit" class="btn btn-primary">Delete Comment</button>
+        <button type="submit" class="btn btn-primary delete-comment-button">Delete Comment</button>
     </form>
         <% }) %>

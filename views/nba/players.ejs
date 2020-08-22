@@ -1,26 +1,27 @@
-
 <% //search individual players %> 
 
+
 <form method="GET" action="/nba/search">
-    <label for="name">Player name:</label>
-    <input type="text" name="name" id="name" value="">
+    <label for="name"></label>
+    <input type="text" name="name" id="name" value="" placeholder="Enter Player">
     <!-- <input type="text" name="last" id="last" value="" required> -->
-    <button type="submit">Search</button>
+    <button type="submit" class="search-button">Search</button>
 </form>
 
 <% //all players %> 
-
-<% players.forEach(p => { %>
-    <h3><a href="/nba/<%= p.PlayerID %>"><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%></a></h3>
-    <img src="<%= p.PhotoUrl  %> " alt="photo">
-
-<form method="POST" action="/nba">
-<input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
-<input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
-<button type="submit">Add to Collection</button>
-</form>
-
-<% }) %>
+<div class="players">
+    <% players.forEach(p => { %>
+        <h3><a href="/nba/<%= p.PlayerID %>"><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%></a></h3>
+        <img class="photo-url" src="<%= p.PhotoUrl  %> " alt="photo">
+    
+    <form method="POST" action="/nba">
+    <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
+    <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
+    <button type="submit">Add to Collection</button>
+    </form>
+    
+    <% }) %>
+</div>
 
 
 

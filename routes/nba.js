@@ -97,21 +97,65 @@ router.get('/:id', async (req, res) => {
 
 // --------------------- POST route for add my players to database ----------------------------
 
+// router.post('/', (req, res) => {
+//   console.log(req.body)
+//   db.player.findOrCreate({
+//     where: { 
+//       name: req.body.name,
+//       image: req.body.photoUrl
+//     }
+//   })
+//   .then(([faves, created]) => {
+//     res.redirect('/nba')
+//   })
+//   .catch(err => {
+//     console.log('Error', err)
+//   })
+// })
+
+// ------------------------------- POST route for user and players association ---------------
+
+
 router.post('/', (req, res) => {
-  console.log(req.body)
-  db.player.findOrCreate({
-    where: { 
-      name: req.body.name,
-      image: req.body.photoUrl
-    }
-  })
-  .then(([faves, created]) => {
-    res.redirect('/nba')
-  })
-  .catch(err => {
-    console.log('Error', err)
+  console.log('😀', req.body)
+  
+    db.player.findOrCreate({
+      where: {
+        name: req.body.FirstName + " " + req.body.LastName
+      },
+      defaults: { 
+        image: req.body.PhotoUrl
+      }
+    })
+    .then(([player, created]) => {
+     // console.log(`This was created: ${created}`)
+      db.users_players.findOrCreate({
+        where: {
+          userId: req.user.id,
+          playerId: player.id
+        }
+      })
+      .then(([fave, faveCreated]) => {
+        console.log(fave.get())
+        res.redirect('back')
+      })
+      .catch(err => {
+        console.log('Error', err)
+    })
+      .catch(err => {
+        console.log('Error', err)
+    })
   })
 })
+
+
+
+
+
+
+
+
+
 
 // ------------------------------- POST comments on each players ------------------------------
 

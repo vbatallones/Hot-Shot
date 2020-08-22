@@ -42,9 +42,37 @@ const API_KEY = process.env.API_KEY
 
 // db.player.findOrCreate({       where: { id: 1,name: "Lebron James"},
 
-db.player.findAll().then(player=>{
-  player.forEach(p => {
-    console.log(p.name)
+// db.player.findAll().then(player=>{
+//   player.forEach(p => {
+//     console.log(p.name)
+//   })
+//   // users will be an array of all User instances
+// });
+
+db.user.findOrCreate({
+  where: {name: 'Levin Batallones'}
+})
+.then(([user, created]) => {
+  // console.log(`This was created: ${created}`)
+  db.player.findOrCreate({
+    where: {
+      name: "LeBron James"
+    }
   })
-  // users will be an array of all User instances
-});
+  .then(([player, created]) => {
+   // console.log(`This was created: ${created}`)
+    user.addPlayer(player)
+    .then(assoc => {
+      console.log(assoc)
+    })
+    .catch(err => {
+      console.log('Error', err)
+  })
+})
+.catch(err => {
+  console.log('Error', err)
+})
+})
+.catch(err => {
+console.log('Error', err)
+})

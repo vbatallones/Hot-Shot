@@ -4,10 +4,7 @@
         logo
     </a>
     <ul class="nav">
-        <% if (!currentUser) { %>
-            <li class="nav-item"><a href="/auth/login">Log in</a></li>
-            <li class="nav-item"><a href="/auth/signup">Sign Up</a></li>
-        <%  } else { %>
+        <% if (currentUser) { %>
         <ul class="nav navbar-nav navbar-right">
             <li class="nav-item"><a href="/auth/logout">Logout</a></li>
             <li class="nav-item"><a href="/profile">My Players</a></li>
