@@ -4,35 +4,87 @@
 }
 
 body {
-  background: #fefefe;
-
+  background: #fefefe; 
+}
+.deleted {
+  text-align: center;
 }
 
 .carousel-item {
-  height: 32rem;
+  height: 300px;
 }
 
 .logo {
-  /* background: url(http://disputebills.com/site/uploads/2015/10/dispute.png) center / contain no-repeat; */
-  margin: 0 auto;
-  /* width: 200px; no height needed ... image will resize automagically */
+  /* margin: 0 auto; */
+  width: 30px;
 }
-.players {
+
+/* .players {
   column-count: 3;
-  /* display: flex;
-  justify-content: right;
-  align-items: baseline; */
+} */
+.result-container {
+  width: 800px;
+  background: rgba(0,0,0,.8);
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: end;
+  justify-content: space-evenly;
+  float: right;
 }
+.result-items {
+  text-align: center;
+  padding: 20px;
+}
+.solo-play button,
+.players button {
+  background: #1D428A;
+  width: 200px
+}
+
 .preview {
   text-align: center;
 }
-#container {
-  
+
+.search button {
+  background: red;
 }
+
+.search {
+  position: relative;
+  justify-content: baseline;
+  align-items: baseline;
+}
+/* ------------- comment section ---------- */
+.comment-name {
+  font-weight: bold;
+}
+/* ----------- individual form in error ----------- */
+
+
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: rgba(0,0,0,.8);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.5);
+  border-radius: 10px;
+}
+
+/* -------------- main form ------------- */
+.form-container .overlay-container {
+  margin-top: 100px;
+}
+
 .players img {
   background: gray;
   border-radius: 180px;
 }
+
 h4 {
   font-weight: bold;
   margin: 0;
@@ -95,6 +147,7 @@ button.ghost {
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  margin-top: 100px;
   position: relative;
   overflow: hidden;
   width: 500px;

@@ -121,10 +121,10 @@ router.post('/', (req, res) => {
   
     db.player.findOrCreate({
       where: {
-        name: req.body.FirstName + " " + req.body.LastName
+        name: req.body.name
       },
       defaults: { 
-        image: req.body.PhotoUrl
+        image: req.body.photoUrl
       }
     })
     .then(([player, created]) => {
@@ -147,14 +147,6 @@ router.post('/', (req, res) => {
     })
   })
 })
-
-
-
-
-
-
-
-
 
 
 // ------------------------------- POST comments on each players ------------------------------
@@ -205,4 +197,8 @@ router.delete('/:id', (req, res) => {
       res.render(`nba/deleted`, {message: "Your comment is deleted"} )
     })
 })
+
+
+
+
   module.exports = router;

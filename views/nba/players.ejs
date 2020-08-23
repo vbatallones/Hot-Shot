@@ -1,28 +1,33 @@
-<% //search individual players %> 
+
+<% //---------------------------------- search individual players --------------------- %> 
 
 
-<form method="GET" action="/nba/search">
-    <label for="name"></label>
-    <input type="text" name="name" id="name" value="" placeholder="Enter Player">
-    <!-- <input type="text" name="last" id="last" value="" required> -->
-    <button type="submit" class="search-button">Search</button>
-</form>
-
-<% //all players %> 
-<div class="players">
-    <% players.forEach(p => { %>
-        <h3><a href="/nba/<%= p.PlayerID %>"><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%></a></h3>
-        <img class="photo-url" src="<%= p.PhotoUrl  %> " alt="photo">
-    
-    <form method="POST" action="/nba">
-    <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
-    <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
-    <button type="submit">Add to Collection</button>
+<div class="search">
+    <form method="GET" action="/nba/search">
+        <label for="name"></label>
+        <input type="text" name="name" id="name" value="" placeholder="Enter Player">
+        <!-- <input type="text" name="last" id="last" value="" required> -->
+        <button type="submit" class="search-button">Player up</button>
     </form>
-    
-    <% }) %>
 </div>
 
+<%//----------------------------------------------- all players --------------------- %> 
+
+<div class="result-container players">
+    <% players.forEach(p => { %>
+    <div class="result-items">
+        
+                <h3><a href="/nba/<%= p.PlayerID %>"><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%></a></h3>
+                <img class="photo-url" src="<%= p.PhotoUrl  %> " alt="photo">
+            
+            <form method="POST" action="/nba">
+            <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
+            <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
+            <button type="submit">Add to Collection</button>
+            </form>
+    </div>
+    <% }) %>
+</div>
 
 
 

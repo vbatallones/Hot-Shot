@@ -1,11 +1,9 @@
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-primary">
     <a class="navbar-brand logo" href="/">
-        <img src=""  class="d-inline-block align-top" alt="">
-        logo
+        <img src="/assets/logo.png"  class="d-inline-block align-top logo" alt="logo-photo">
     </a>
-    <ul class="nav">
+    <ul class="nav" class="nav navbar-nav navbar-right">
         <% if (currentUser) { %>
-        <ul class="nav navbar-nav navbar-right">
             <li class="nav-item"><a href="/auth/logout">Logout</a></li>
             <li class="nav-item"><a href="/profile">My Players</a></li>
             <li class="nav-item"><a href="/nba">NBA Players</a></li>

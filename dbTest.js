@@ -49,30 +49,40 @@ const API_KEY = process.env.API_KEY
 //   // users will be an array of all User instances
 // });
 
-db.user.findOrCreate({
-  where: {name: 'Levin Batallones'}
-})
-.then(([user, created]) => {
-  // console.log(`This was created: ${created}`)
-  db.player.findOrCreate({
-    where: {
-      name: "LeBron James"
-    }
-  })
-  .then(([player, created]) => {
-   // console.log(`This was created: ${created}`)
-    user.addPlayer(player)
-    .then(assoc => {
-      console.log(assoc)
+// db.user.findOrCreate({
+//   where: {name: 'Levin Batallones'}
+// })
+// .then(([user, created]) => {
+//   // console.log(`This was created: ${created}`)
+//   db.player.findOrCreate({
+//     where: {
+//       name: "LeBron James"
+//     }
+//   })
+//   .then(([player, created]) => {
+//    // console.log(`This was created: ${created}`)
+//     user.addPlayer(player)
+//     .then(assoc => {
+//       console.log(assoc)
+//     })
+//     .catch(err => {
+//       console.log('Error', err)
+//   })
+// })
+// .catch(err => {
+//   console.log('Error', err)
+// })
+// })
+// .catch(err => {
+// console.log('Error', err)
+// })
+
+db.player.findAll({})
+    .then(players=>{
+        console.log(players)
+        res.render('profile', {players: players})
     })
-    .catch(err => {
-      console.log('Error', err)
-  })
-})
-.catch(err => {
-  console.log('Error', err)
-})
-})
-.catch(err => {
-console.log('Error', err)
-})
+        .catch((error) => {
+        console.log(error)
+        res.status(400)
+    })

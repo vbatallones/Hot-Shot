@@ -1,4 +1,6 @@
 
+<% // ---------------------------- Preview player ----------------------------  %> 
+
     <div class="preview">
         <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%> </h5>
         <p>Team: <%= p.Team %> </p>
@@ -8,7 +10,9 @@
         <p>Experience: <%= p.Experience %> </p>
         <img src="<%= p.PhotoUrl  %> " alt="photo">
     </div>
-        
+    
+    <% // ---------------------------- form for comment on player ----------------------------  %> 
+
     <div class="comment-form">
         <form method="POST" action="/nba/comment">
             <input type="hidden" name="playerId" value="<%= p.PlayerID %>">
@@ -19,12 +23,16 @@
             <button class="btn btn-primary comment-button" type="submit">Submit</button>
         </form>
     </div>
- 
-    <% comments.forEach((c, index) => { %>
-        <h5><%= c.name %> </h5>
-        <p ><%= c.content %></p> 
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop"></button>
+
+
+    <% // ---------------------------- update comment on player and delete comment ----------------------------  %> 
+
+    <% comments.forEach((c, index) => { %>
+        <h3 class="comment-name"> -<%= c.name %> </h3>
+        <p class="comment-content">" <%= c.content %> "</p> 
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">Edit</button>
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
