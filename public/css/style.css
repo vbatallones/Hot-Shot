@@ -12,11 +12,22 @@ h3 a {
   text-align: center;
   margin: 100px auto;
 }
-
+/* --------------- carousel images/ jumbotron --------------- */
 .carousel-item {
   height: 300px;
 }
-
+.carousel {
+  margin: auto;
+  width: 1000px;
+}
+.jumbotron {
+  margin: 100px auto;
+}
+.welcome-note {
+  text-align: center;
+  font-weight: bold;
+}
+/* ------------------------------------ */
 .players img {
   background: white;
   border-radius: 180px;
