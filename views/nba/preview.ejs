@@ -1,16 +1,22 @@
 
 <% // ---------------------------- Preview player ----------------------------  %> 
 
-    <div class="preview">
-        <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%> </h5>
+<div class="card" style="width: 18rem;">
+        <img src="<%= p.PhotoUrl  %> "  width="80px" class="card-photo" alt="photo">
+    <div class="card-body">
+        <h5 class="card-title"><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%> </h5>
         <p>Team: <%= p.Team %> </p>
         <p>Position: <%= p.Position  %> </p>
         <p>Status: <%= p.Status %> </p>
         <p>Salary: $<%= p.Salary %> </p>
         <p>Experience: <%= p.Experience %> </p>
-        <img src="<%= p.PhotoUrl  %> " alt="photo">
+        <form method="POST" action="/nba">
+            <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
+            <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
+            <button type="submit">Pick 'Em</button>
+        </form>
     </div>
-    
+</div>
     <% // ---------------------------- form for comment on player ----------------------------  %> 
 
     <div class="comment-form">
@@ -27,7 +33,7 @@
 
 
     <% // ---------------------------- update comment on player and delete comment ----------------------------  %> 
-
+<div class="update-comment">
     <% comments.forEach((c, index) => { %>
         <h3 class="comment-name"> -<%= c.name %> </h3>
         <p class="comment-content">" <%= c.content %> "</p> 
@@ -45,8 +51,8 @@
 
                     <div class="modal-body">
                         <form method="POST" action="/nba/<%= c.id%>?_method=PUT">
-                        <!-- <textarea class="form-control" type="text" name="content" id="content"></textarea>  -->
-                        <textarea  type="text" name="content" id="content" value="<%= c.content %>"></textarea>
+                        <!-- <textarea  type="text" name="content" id="content"></textarea>  -->
+                        <textarea  type="text" class="form-control" name="content" id="content" value="<%= c.content %>"></textarea>
                         <input hidden type="text" name="name" id="name" value="<%= c.name %>">
                         <input hidden type="text" name="playerId" id="playerId" value="<%= c.playerId %>">
                     </div>
@@ -63,3 +69,4 @@
         <button type="submit" class="btn btn-primary delete-comment-button">Delete Comment</button>
     </form>
         <% }) %>
+</div>

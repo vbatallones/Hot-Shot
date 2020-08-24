@@ -1,12 +1,14 @@
 
-<h3>Favorite Players</h3>   
+<h1 class="favorite-player">Favorite Players</h1> 
 
-
-
-<% players.forEach(p => { %>
-    <h3><%= p.name %> </h3>
-    <img src="<%= p.image  %> " alt="photo">
-    <form method="POST" action="/profile/delete/<%= p.id %> ">
-        <button type="submit">DELETE</button>
-    </form>
-<% }) %>
+<div class="result-container players">
+    <% players.forEach(p => { %>
+        <div class="result-items">
+            <h3><%= p.name %> </h3>
+            <img src="<%= p.image  %> " alt="photo">
+            <form method="POST" action="/profile/delete/<%= p.id %> ">
+                <button type="submit">DELETE</button>
+            </form>
+        </div> 
+    <% }) %>
+</div>

@@ -12,41 +12,7 @@ Express authentication template using Passport + flash messages + custom middlew
 * Passwords that are hashed with BCrypt
 * EJS Templating and EJS Layouts
 
-### User Model
-
-| Column Name | Data Type | Notes |
-| --------------- | ------------- | ------------------------------ |
-| id | Integer | Serial Primary Key, Auto-generated |
-| name | String | Must be provided |
-| email | String | Must be unique / used for login |
-| password | String | Stored as a hash |
-| createdAt | Date | Auto-generated |
-| updatedAt | Date | Auto-generated |
-
-### Default Routes
-
-| Method | Path | Location | Purpose |
-| ------ | ---------------- | -------------- | ------------------- |
-| GET | / | server.js | Home page |
-| GET | /auth/login | auth.js | Login form |
-| GET | /auth/signup | auth.js | Signup form |
-| POST | /auth/login | auth.js | Login user |
-| POST | /auth/signup | auth.js | Creates User |
-| GET | /auth/logout | auth.js | Removes session info |
-| GET | /profile | server.js | Regular User Profile |
-
 ## Steps To Use
-
-#### 1. Create a new repo on Github and use your 'express-authentication' as the template
-
-When we are finished with this boilerplate, we are going to make it a template on Github that will allow us to create a new repo on Github with all this code already loaded in.
-* Go to `github.com` and create a new repository. In the template dropdown, choose this template.
-* Clone your new repo to your local machine
-* Get Codin'!
-
-#### 2. Delete any .keep files
-
-The `.keep` files are there to maintain the file structure of the auth. If there is a folder that has nothing in it, git won't add it. The dev work around is to add a file to it that has nothing in it, just forces git to keep the folder so we can use it later.
 
 #### 3. Install node modules from the package.json
 

@@ -7,7 +7,11 @@ body {
 h3 a {
   color: whitesmoke;
 }
-
+.favorite-player h1 {
+  text-align: center;
+  font-weight: bold;
+  color: black;
+}
 .deleted {
   text-align: center;
   margin: 100px auto;
@@ -70,7 +74,7 @@ h3 a {
 /* ------------------------- search player --------------- */
 .card {
   text-align: center;
-  margin: 10px auto;
+  margin: 70px auto;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
@@ -106,8 +110,17 @@ h3 a {
   text-align: center;
 }
 /* ------------- comment section ---------- */
+
+.comment-form {
+  margin: auto;
+  width: 300px;
+}
+
 .comment-name {
   font-weight: bold;
+}
+.update-comment {
+  padding: 20px;
 }
 /* ----------- individual form in error ----------- */
 
@@ -132,19 +145,15 @@ h3 a {
 }
 
 #auth-email,
-#auth-password {
-  border: none;
-  background: transparent;
-  border-bottom: 1px solid red;
-}
-
+#auth-password,
 #new-email,
 #new-name,
 #new-password {
   border: none;
   background: transparent;
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid  #ff4b2b;
 }
+
 /* -------------- main form ------------- */
 
 h4 {
