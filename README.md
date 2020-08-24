@@ -419,9 +419,10 @@ here is my deleted render page when the user delete the comment.
     <a href="/nba">Let's hoop back</a>
 </div>
 ```
+
+
 ## Live site
 [Hot Shot](https://nba-player-generator.herokuapp.com/)
-
 
 
 
