@@ -12,7 +12,8 @@ h3 a {
   margin-top: 300px;
   color: black;
 }
-.favorite-player h1 {
+.favorite-player {
+  margin-top: 100px;
   text-align: center;
   font-weight: bold;
   color: black;
