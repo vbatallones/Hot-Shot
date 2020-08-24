@@ -1,23 +1,18 @@
-<div>
-  <a href="/nba">NBA Players</a>
-</div>
-
-<div class="solo-play">
+<div class="card" style="width: 18rem;">
   <% players.forEach(p => { %>
-      <h5><%= `${p.FirstName} ${p.LastName} #${p.Jersey}  `%> </h5>
+    <img src="<%= p.PhotoUrl  %> "  width="80px" class="card-photo" alt="photo">
+    <div class="card-body">
+      <h5 class="card-title"><%= `${p.FirstName} ${p.LastName} #${p.Jersey}`%> </h5>
       <p>Team: <%= p.Team %> </p>
       <p>Position: <%= p.Position  %> </p>
       <p>Status: <%= p.Status %> </p>
       <p>Salary: $<%= p.Salary %> </p>
       <p>Experience: <%= p.Experience %> </p>
-    <img src="<%= p.PhotoUrl  %> " alt="photo">
-
-    <form method="POST" action="/nba">
-      <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
-      <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
-      <button type="submit">Add to Collection</button>
+      <form method="POST" action="/nba">
+        <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
+        <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
+        <button type="submit">Pick 'Em</button>
       </form>
   <% }) %> 
     </div>
-      
-
+  </div>

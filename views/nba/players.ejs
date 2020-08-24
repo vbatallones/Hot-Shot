@@ -2,15 +2,6 @@
 <% //---------------------------------- search individual players --------------------- %> 
 
 
-<div class="search">
-    <form method="GET" action="/nba/search">
-        <label for="name"></label>
-        <input type="text" name="name" id="name" value="" placeholder="Enter Player">
-        <!-- <input type="text" name="last" id="last" value="" required> -->
-        <button type="submit" class="search-button">Player up</button>
-    </form>
-</div>
-
 <%//----------------------------------------------- all players --------------------- %> 
 
 <div class="result-container players">
@@ -23,7 +14,7 @@
             <form method="POST" action="/nba">
             <input hidden type="text" name="name" id="name" value="<%= `${p.FirstName} ${p.LastName}` %> ">
             <input hidden type="text" name="photoUrl" id="photoUrl" value="<%= p.PhotoUrl %> ">
-            <button type="submit">Add to Collection</button>
+            <button type="submit">Pick 'Em</button>
             </form>
     </div>
     <% }) %>

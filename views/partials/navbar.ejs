@@ -1,13 +1,20 @@
-<nav class="navbar navbar-light bg-primary">
+<nav class="navbar navbar-light bg-dark fixed-top">
     <a class="navbar-brand logo" href="/">
         <img src="/assets/logo.png"  class="d-inline-block align-top logo" alt="logo-photo">
     </a>
-    <ul class="nav" class="nav navbar-nav navbar-right">
+    <ul class="nav" class="nav navbar-nav navbar-center">
         <% if (currentUser) { %>
-            <li class="nav-item"><a href="/auth/logout">Logout</a></li>
             <li class="nav-item"><a href="/profile">My Players</a></li>
             <li class="nav-item"><a href="/nba">NBA Players</a></li>
+            <li class="nav-item"><a href="/auth/logout">Logout</a></li>
+        </ul>
+        <form method="GET" action="/nba/search">
+        <label for="name"></label>
+        <input type="text" name="name" id="name" value="" placeholder="Enter Player">
+        <!-- <input type="text" name="last" id="last" value="" required> -->
+        <button type="submit" class="search-button">Player up</button>
+    </form>
             <% } %>
-    </ul>
+    
 </nav>
 
