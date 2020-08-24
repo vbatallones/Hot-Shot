@@ -35,7 +35,7 @@ router.get('/search', (req, res) => {
   let firstName;
   let lastName;
   // if the query return a name that includes a space, we now split the characters in to two parts
-  // which is the fisrt name is the first index and the last name is the second index
+  // which is the first name is the first index and the last name is the second index
   if (req.query.name.includes(' ')) {
     firstName = req.query.name.split(' ')[0];
     lastName = req.query.name.split(' ')[1];
@@ -88,36 +88,16 @@ router.get('/:id', async (req, res) => {
       console.log(error)
       res.status(400)
     })
-    //res.render('nba/preview', {p: player})
   }) 
   .catch(err => {
     console.log('error', err)
   })
 }) 
 
-// --------------------- POST route for add my players to database ----------------------------
-
-// router.post('/', (req, res) => {
-//   console.log(req.body)
-//   db.player.findOrCreate({
-//     where: { 
-//       name: req.body.name,
-//       image: req.body.photoUrl
-//     }
-//   })
-//   .then(([faves, created]) => {
-//     res.redirect('/nba')
-//   })
-//   .catch(err => {
-//     console.log('Error', err)
-//   })
-// })
-
 // ------------------------------- POST route for user and players association ---------------
 
 
 router.post('/', (req, res) => {
-  console.log('😀', req.body)
   
     db.player.findOrCreate({
       where: {
