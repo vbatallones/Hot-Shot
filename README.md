@@ -447,7 +447,7 @@ MOTTO:
 * [Adam Honre]() Thank you for the lessons, examples, and editing skills it really helps me.<br />
 
 ## TEAMS
-[Yoel Morad]() Thank you Kuya for the long nights of coding and motivational wisdom, we got this bro. From zero to software     engineer. I'm always here for you
+[Yoel Morad]() Thank you Kuya for the long nights of coding and motivational wisdom, we got this bro. From zero to software     engineer. I'm always here for you. No Quitting!
 
 [Channee Math]() How we do bro? Thank you for putting me in my game as always bro, sending all those videos of motivation to keep us in the game. We can do this bro I'm here for you always Let's do this!
 
