@@ -420,7 +420,7 @@ here is my deleted render page when the user delete the comment.
 </div>
 ```
 ## Live site
-[]()
+[Hot Shot](https://nba-player-generator.herokuapp.com/)
 
 
 
